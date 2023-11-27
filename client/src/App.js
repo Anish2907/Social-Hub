@@ -3,14 +3,14 @@ import Register from "./pages/Register";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import {createBrowserRouter,Navigate,RouterProvider} from "react-router-dom";
+import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
 
 function App() {
 
   const user = true;
 
-  const ProtectedRoutes = ({children})=>{
-    if(!user) {
+  const ProtectedRoutes = ({ children }) => {
+    if (!user) {
       return <Navigate to="/login" />
     }
     return children;
@@ -47,7 +47,7 @@ function App() {
 
 
   return (
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   );
 }
 
