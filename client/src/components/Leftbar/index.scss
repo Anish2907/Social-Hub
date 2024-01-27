@@ -1,37 +1,39 @@
-.leftBar{
+.leftBar {
     flex: 2;
     position: sticky;
-    top: 3.6rem;
+    top: 4.1rem;
     height: calc(100vh - 3.6rem);
     overflow-y: scroll;
 
-    &::-webkit-scrollbar{
+    &::-webkit-scrollbar {
         display: none;
     }
 
-    .container{
+    .container {
         padding: 1.2rem;
 
-        hr{
+        hr {
             margin: 1.3rem 0;
             border: none;
             height: 0.5px;
             background-color: lightgray;
         }
-        .menu{
+
+        .menu {
             display: flex;
             flex-direction: column;
             gap: 1.6rem;
 
-            span{
+            span {
                 font-size: small;
             }
-            .item{
+
+            .item {
                 display: flex;
                 align-items: center;
                 gap: 1rem;
 
-                span{
+                span {
                     font-size: large;
                 }
             }

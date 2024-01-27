@@ -1,20 +1,23 @@
 import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema({
-    userId:{
-        type:String
+    userId: {
+        type: String
     },
-    desc:{
-        type:String
+    desc: {
+        type: String
     },
-    imgURL:{
-        type:String
+    imgURL: {
+        type: String
     },
-    likes:{
-        type:Array,
-        default:[]
+    imgPublicId: {
+        type: String
+    },
+    likes: {
+        type: Array,
+        default: []
     }
-},{timestamps:true});
+}, { timestamps: true });
 
 
-export const postModel = mongoose.model("Post",postSchema);
+export const postModel = mongoose.model("Post", postSchema);

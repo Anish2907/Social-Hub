@@ -1,65 +1,83 @@
-.shares{
+.shares {
     margin: 1rem 0;
 
-    .container{
+    .container {
         padding: 1.2rem;
-        -webkit-box-shadow: 0px 0px 56px -16px rgba(153,151,153,1);
-        -moz-box-shadow: 0px 0px 56px -16px rgba(153,151,153,1);
-        box-shadow: 0px 0px 56px -16px rgba(153,151,153,1);
+        -webkit-box-shadow: 0px 0px 56px -16px rgba(153, 151, 153, 1);
+        -moz-box-shadow: 0px 0px 56px -16px rgba(153, 151, 153, 1);
+        box-shadow: 0px 0px 56px -16px rgba(153, 151, 153, 1);
         border-radius: 10px;
         display: flex;
         flex-direction: column;
         gap: 1rem;
 
-        .top{
+        .top {
             display: flex;
             align-items: center;
             gap: 2rem;
-            
-            img{
+
+            img {
                 width: 40px;
                 height: 40px;
                 border-radius: 50%;
                 object-fit: cover;
             }
-            input{
+
+            input {
                 border: none;
                 outline: none;
-                width: 70%;  
-                padding: 1rem; 
-                font-size: large;             
+                width: 70%;
+                padding: 1rem;
+                font-size: large;
             }
         }
-        .bottom{
+
+        .bottom {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 1rem;
 
-            .left{
+            .left {
                 display: flex;
                 align-items: center;
                 gap: 2rem;
 
-                .item{
+                .item {
                     display: flex;
                     align-items: center;
                     gap: 1rem;
                     cursor: pointer;
-                    
-                    span{
+
+                    span {
                         font-size: large;
                     }
                 }
             }
-            button{
-                padding: 0.7rem;
-                color: white;
-                font-weight: bold;
-                background-color: green;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
+
+            .right {
+                display: flex;
+                gap: 1rem;
+
+                button {
+                    padding: 0.7rem;
+                    color: white;
+                    font-weight: bold;
+                    background-color: green;
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
+
+                .cancelBtn {
+                    padding: 0.7rem;
+                    color: white;
+                    font-weight: bold;
+                    background-color: rgb(132, 131, 131);
+                    border: none;
+                    border-radius: 4px;
+                    cursor: pointer;
+                }
             }
         }
     }

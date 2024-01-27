@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { 
+import {
     createController,
     updateController,
     deleteController,
@@ -8,6 +8,7 @@ import {
     timelineController,
     userPostsController
 } from "../controllers/postController.js";
+import { verifyJWT } from "../middleware/jwtVerification.js";
 
 
 
@@ -18,7 +19,7 @@ router.post("/", createController);
 //update post
 router.put("/:id", updateController);
 //delete post
-router.delete("/:id", deleteController);
+router.delete("/:id", verifyJWT, deleteController);
 //like post
 router.put("/:id/like", likeController);
 //get a post

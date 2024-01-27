@@ -3,52 +3,28 @@ import Register from "./pages/Register";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import { createBrowserRouter, Navigate, RouterProvider } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import RequireAuth from "./components/RequireAuth";
+import PersistLogin from "./components/PersistLogin";
 
 function App() {
-
-  const user = true;
-
-  const ProtectedRoutes = ({ children }) => {
-    if (!user) {
-      return <Navigate to="/login" />
-    }
-    return children;
-  }
-
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: (
-        <ProtectedRoutes>
-          <Layout />
-        </ProtectedRoutes>
-      ),
-      children: [
-        {
-          path: "/",
-          element: <Home />
-        },
-        {
-          path: "/profile/:id",
-          element: <Profile />
-        }
-      ]
-    },
-    {
-      path: "/login",
-      element: <Login />
-    },
-    {
-      path: "/register",
-      element: <Register />
-    }
-  ]);
-
-
   return (
-    <RouterProvider router={router} />
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+
+      <Route element={<PersistLogin />}>
+        <Route element={<RequireAuth />}>
+          <Route path="/" element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="profile/:id" element={<Profile />} />
+          </Route>
+        </Route>
+      </Route>
+
+    </Routes>
   );
+
 }
 
 export default App;

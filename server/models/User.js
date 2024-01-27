@@ -1,65 +1,73 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    username:{
+    username: {
         type: String,
-        min:2,
-        required:true
+        min: 2,
+        required: true
     },
-    email:{
-        type:String,
-        required:true
+    email: {
+        type: String,
+        required: true
     },
-    password:{
-        type:String,
-        min:6,
-        required:true
+    password: {
+        type: String,
+        min: 6,
+        required: true
     },
-    profilePicture:{
-        type:String,
-        default:""
+    profilePicture: {
+        type: String,
+        default: ""
     },
-    coverPicture:{
-        type:String,
-        default:""
+    profilePicturePublicId: {
+        type: String,
+        default: ""
     },
-    desc:{
-        type:String
+    coverPicture: {
+        type: String,
+        default: ""
     },
-    city:{
-        type:String
+    coverPicturePublicId: {
+        type: String,
+        default: ""
     },
-    from:{
-        type:String
+    desc: {
+        type: String
     },
-    instaUrl:{
-        type:String
+    city: {
+        type: String
     },
-    fbUrl:{
-        type:String
+    from: {
+        type: String
     },
-    twitterUrl:{
-        type:String
+    instaUrl: {
+        type: String
     },
-    relationship:{
-        type:Number,
-        enum:[1,2,3]
+    fbUrl: {
+        type: String
     },
-    followings:{
-        type:Array,
-        default:[]
+    twitterUrl: {
+        type: String
     },
-    followers:{
-        type:Array,
-        default:[]
+    relationship: {
+        type: Number,
+        enum: [1, 2, 3]
     },
-    isAdmin:{
-        type:Boolean,
-        default:false
+    followings: {
+        type: Array,
+        default: []
     },
-    refreshToken:{
-        type:String
+    followers: {
+        type: Array,
+        default: []
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
+    refreshToken: {
+        type: String
     }
-},{timestamps:true});
+}, { timestamps: true });
 
-export const userModel = mongoose.model("User",userSchema);
+export const userModel = mongoose.model("User", userSchema);
