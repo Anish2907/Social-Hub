@@ -9,6 +9,11 @@
         display: none;
     }
 
+    @media (max-width:480px) {
+        flex: 0;
+        display: none;
+    }
+
     .container {
         padding: 1rem 1.2rem;
         height: 94%;

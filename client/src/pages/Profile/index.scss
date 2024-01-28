@@ -1,10 +1,15 @@
 .profile {
-    background-color: rgb(238, 235, 235);
 
     .images {
+        background-color: rgb(238, 235, 235);
         width: 100%;
         height: 20rem;
         position: relative;
+
+        @media (max-width:480px) {
+            width: 100vw;
+            height: 15rem;
+        }
 
         .coverContainer {
             width: 100%;
@@ -28,7 +33,6 @@
         }
 
         .profilePicContainer {
-
             width: 12rem;
             height: 12rem;
             object-fit: cover;
@@ -37,6 +41,12 @@
             right: 0;
             margin: auto;
             top: 13rem;
+
+            @media (max-width:480px) {
+                top: 8rem;
+                width: 10rem;
+                height: 10rem;
+            }
 
             .editIcon {
                 font-size: xx-large;
@@ -55,7 +65,12 @@
     }
 
     .profileContainer {
+        background-color: rgb(238, 235, 235);
         padding: 20px 70px;
+
+        @media (max-width:480px) {
+            padding: 1rem 0;
+        }
 
         .userInfo {
             height: 14.3rem;
@@ -69,11 +84,20 @@
             align-items: center;
             justify-content: space-between;
 
+            @media (max-width:480px) {
+                height: 10rem;
+                padding: 2.3rem 0.1rem;
+            }
+
             .left {
                 flex: 1;
                 display: flex;
                 align-items: center;
                 gap: 1rem;
+
+                @media (max-width:480px) {
+                    gap: 0.3rem;
+                }
             }
 
             .center {
@@ -81,11 +105,21 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                justify-content: center;
                 gap: 1rem;
+
+                @media (max-width:480px) {
+                    gap: 0.8rem;
+                }
 
                 span {
                     font-size: xx-large;
                     font-weight: bold;
+                    text-align: center;
+
+                    @media (max-width:480px) {
+                        font-size: larger;
+                    }
                 }
 
                 .place {
@@ -106,6 +140,10 @@
                     padding: 10px 20px;
                     border-radius: 5px;
                     cursor: pointer;
+
+                    @media (max-width:480px) {
+                        padding: 8px 12px;
+                    }
                 }
 
                 .profileBtn {
@@ -120,6 +158,11 @@
                         color: white;
                         font-weight: bolder;
                         cursor: pointer;
+
+                        @media (max-width:480px) {
+                            padding: 8px 12px;
+                            width: max-content;
+                        }
                     }
 
                     .signOut {
@@ -154,6 +197,12 @@
             height: 50%;
             z-index: 9999;
 
+            @media (max-width:480px) {
+                width: 80%;
+                left: 0.6rem;
+                height: 56%;
+            }
+
             .container {
                 display: flex;
                 flex-direction: column;
@@ -171,6 +220,10 @@
                 .place {
                     display: flex;
                     gap: 1rem;
+
+                    @media (max-width:480px) {
+                        flex-direction: column;
+                    }
                 }
 
                 .otherMedia {
@@ -181,6 +234,10 @@
 
                 .name {
                     width: 25rem;
+
+                    @media (max-width:480px) {
+                        width: auto;
+                    }
                 }
 
                 .updateBtn {
@@ -222,6 +279,12 @@
             width: 40%;
             height: 10%;
             z-index: 9999;
+
+            @media (max-width:480px) {
+                width: 70%;
+                left: 2rem;
+                top: 8rem;
+            }
 
             .container {
                 display: flex;
@@ -272,6 +335,12 @@
         height: 20%;
         border-radius: 5px;
         z-index: 9999;
+
+        @media (max-width:480px) {
+            width: 70%;
+            height: 16%;
+            left: 0.5rem;
+        }
 
         .container {
             display: flex;

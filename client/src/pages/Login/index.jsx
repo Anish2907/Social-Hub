@@ -35,13 +35,12 @@ export default function Login() {
             <div className="card">
                 <div className="left">
                     <h1>Social Hub</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, debitis reiciendis? Deleniti numquam dolore deserunt amet vitae sapiente animi aspernatur doloribus nemo, in excepturi fuga, non sunt aliquid tenetur nostrum?
-                    </p>
-                    <span>Don't have an account?</span>
-                    <Link to="/register">
-                        <button>Register</button>
-                    </Link>
+                    <div className="toRegister">
+                        <span>Don't have an account?</span>
+                        <Link to="/register">
+                            <button>Register</button>
+                        </Link>
+                    </div>
                 </div>
                 <div className="right">
                     <h1>Login</h1>

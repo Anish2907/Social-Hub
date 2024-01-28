@@ -2,6 +2,12 @@
     margin-bottom: 1.2rem;
     position: relative;
 
+    @media (max-width:480px) {
+        width: 100vw;
+        margin-bottom: 1rem;
+
+    }
+
     .container {
         padding: 1.2rem;
         -webkit-box-shadow: 0px 0px 56px -16px rgba(153, 151, 153, 1);
@@ -62,54 +68,58 @@
             }
         }
 
-    }
-
-    .deleteModal {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        background-color: white;
-        padding: 3rem;
-        width: 40%;
-        height: 25%;
-        z-index: 999;
-        border-radius: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-
-        span {
-            font-size: x-large;
-            color: rgb(87, 86, 86);
-        }
-
-        .btns {
+        .deleteModal {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            background-color: rgb(218, 217, 217);
+            padding: 3rem;
+            width: 40%;
+            height: 25%;
+            z-index: 999;
+            border-radius: 10px;
             display: flex;
-            gap: 1.2rem;
+            flex-direction: column;
+            gap: 1rem;
 
-            .cancelBtn {
-                padding: 0.8rem;
-                background-color: gray;
-                color: white;
-                border: none;
-                border-radius: 3px;
-                font-weight: bold;
-                cursor: pointer;
+            @media (max-width:480px) {
+                padding: 3rem 2rem;
+                width: 70%;
             }
 
-            .deleteBtn {
-                padding: 0.8rem;
-                background-color: rgb(252, 114, 114);
-                color: white;
-                border: none;
-                border-radius: 3px;
-                font-weight: bold;
-                cursor: pointer;
+            span {
+                font-size: x-large;
+                color: rgb(50, 50, 50);
+            }
+
+            .btns {
+                display: flex;
+                gap: 1.2rem;
+
+                .cancelBtn {
+                    padding: 0.8rem;
+                    background-color: gray;
+                    color: white;
+                    border: none;
+                    border-radius: 3px;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+
+                .deleteBtn {
+                    padding: 0.8rem;
+                    background-color: rgb(252, 114, 114);
+                    color: white;
+                    border: none;
+                    border-radius: 3px;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
             }
         }
-    }
 
+    }
 }

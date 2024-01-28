@@ -172,7 +172,7 @@ export default function Profile() {
     <div className="profile">
       <div className="images">
         <div className="coverContainer">
-          <img src={userInfo.coverPicture || "https://images.cnbctv18.com/wp-content/uploads/2023/09/red-panda-780x438.jpg"} alt="" className="cover" />
+          <img src={userInfo.coverPicture || "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-photos%2Fgray&psig=AOvVaw0lO4YY8MuuZEW5daK-eSWk&ust=1706556956202000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCKjAnp7qgIQDFQAAAAAdAAAAABAD"} alt="" className="cover" />
           {isUser && <ModeEditOutlineOutlinedIcon onClick={() => setOpenCoverUpdate(prev => !prev)} className="editIcon" />}
         </div>
         <div className="profilePicContainer">

@@ -100,16 +100,16 @@ export default function Post({ info, isProfile }) {
             <span>Share</span>
           </div>
         </div>
-      </div>
-      {openDel && (
-        <div className="deleteModal">
-          <span>Are you sure to delete this post ?</span>
-          <div className="btns">
-            <button onClick={() => setOpenDel(false)} className="cancelBtn">Cancel</button>
-            <button onClick={deletePost} className="deleteBtn">Delete</button>
+        {openDel && (
+          <div className="deleteModal">
+            <span>Are you sure to delete this post ?</span>
+            <div className="btns">
+              <button onClick={() => setOpenDel(false)} className="cancelBtn">Cancel</button>
+              <button onClick={deletePost} className="deleteBtn">Delete</button>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   )
 } 

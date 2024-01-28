@@ -1,11 +1,11 @@
-.login{
+.login {
     height: 100vh;
     background-color: rgb(193, 190, 255);
     display: flex;
     justify-content: center;
     align-items: center;
 
-    .card{
+    .card {
         width: 50%;
         display: flex;
         background-color: white;
@@ -13,33 +13,49 @@
         border-radius: 10px;
         overflow: hidden;
 
-        .left{
+        @media (max-width:480px) {
+            flex-direction: column-reverse;
+            width: 90%;
+        }
+
+        .left {
             flex: 1;
-            background: linear-gradient(rgba(39,11,96,0.5),rgba(39,11,96,0.5)), url(https://images.pexels.com/photos/3491940/pexels-photo-3491940.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1) center;
+            background: linear-gradient(rgba(39, 11, 96, 0.5), rgba(39, 11, 96, 0.5)), url(https://images.pexels.com/photos/3491940/pexels-photo-3491940.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1) center;
             background-size: cover;
             padding: 3.3rem;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             gap: 3rem;
             color: white;
 
-            h1{
+            h1 {
                 font-size: 5rem;
             }
-            span{
-                font-size: 0.9rem;
-            }
-            button{
-                width: 50%;
-                padding: 1rem;
-                border: none;
-                background-color: white;
-                color: rebeccapurple;
-                font-weight: bold;
-                cursor: pointer;
+
+            .toRegister {
+
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+
+                span {
+                    font-size: 0.9rem;
+                }
+
+                button {
+                    width: 50%;
+                    padding: 1rem;
+                    border: none;
+                    background-color: white;
+                    color: rebeccapurple;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
             }
         }
-        .right{
+
+        .right {
             flex: 1;
             padding: 3.3rem;
             display: flex;
@@ -47,21 +63,23 @@
             justify-content: center;
             gap: 3.3rem;
 
-            h1{
+            h1 {
                 color: #555;
             }
-            form{
+
+            form {
                 display: flex;
                 flex-direction: column;
                 gap: 2rem;
 
-                input{
+                input {
                     padding: 1.3rem;
                     outline: none;
                     border: none;
                     border-bottom: 1px solid lightgray;
                 }
-                button{
+
+                button {
                     width: 50%;
                     background-color: #938eef;
                     color: white;

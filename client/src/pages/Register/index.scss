@@ -1,11 +1,15 @@
-.register{
+.register {
     height: 100vh;
     background-color: rgb(193, 190, 255);
     display: flex;
     justify-content: center;
     align-items: center;
 
-    .card{
+    @media (max-width:480px) {
+        padding: 1rem 0;
+    }
+
+    .card {
         width: 50%;
         display: flex;
         background-color: white;
@@ -13,33 +17,55 @@
         border-radius: 10px;
         overflow: hidden;
 
-        .left{
+        @media (max-width:480px) {
+            flex-direction: column;
+            width: 90%;
+            height: 100%;
+        }
+
+        .left {
             flex: 1;
-            background: linear-gradient(rgba(39,11,96,0.5),rgba(39,11,96,0.5)), url(https://plus.unsplash.com/premium_photo-1678914044239-6602f0d6853c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80) center;
+            background: linear-gradient(rgba(39, 11, 96, 0.5), rgba(39, 11, 96, 0.5)), url(https://plus.unsplash.com/premium_photo-1678914044239-6602f0d6853c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80) center;
             background-size: cover;
             padding: 3.3rem;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             gap: 3rem;
             color: white;
 
-            h1{
+            @media (max-width:480px) {
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+
+            h1 {
                 font-size: 5rem;
             }
-            span{
-                font-size: 0.9rem;
+
+            .toLogin {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+
+                span {
+                    font-size: 0.9rem;
+                }
+
+                button {
+                    width: 50%;
+                    padding: 1rem;
+                    border: none;
+                    background-color: white;
+                    color: rebeccapurple;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
             }
-            button{
-                width: 50%;
-                padding: 1rem;
-                border: none;
-                background-color: white;
-                color: rebeccapurple;
-                font-weight: bold;
-                cursor: pointer;
-            }
+
         }
-        .right{
+
+        .right {
             flex: 1;
             padding: 3.3rem;
             display: flex;
@@ -47,21 +73,32 @@
             justify-content: center;
             gap: 3.3rem;
 
-            h1{
+            @media (max-width:480px) {
+                padding: 2rem;
+                gap: 2rem;
+            }
+
+            h1 {
                 color: #555;
             }
-            form{
+
+            form {
                 display: flex;
                 flex-direction: column;
                 gap: 2rem;
 
-                input{
+                input {
                     padding: 1.3rem;
                     outline: none;
                     border: none;
                     border-bottom: 1px solid lightgray;
+
+                    @media (max-width:480px) {
+                        padding: 0.8rem;
+                    }
                 }
-                button{
+
+                button {
                     width: 50%;
                     background-color: #938eef;
                     color: white;

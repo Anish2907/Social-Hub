@@ -77,13 +77,12 @@ export default function Register() {
         </div>
         <div className="left">
           <h1>Social Hub</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, debitis reiciendis? Deleniti numquam dolore deserunt amet vitae sapiente animi aspernatur doloribus nemo, in excepturi fuga, non sunt aliquid tenetur nostrum?
-          </p>
-          <span>Already have an account?</span>
-          <Link to="/login">
-            <button>Login</button>
-          </Link>
+          <div className="toLogin">
+            <span>Already have an account?</span>
+            <Link to="/login">
+              <button>Login</button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
