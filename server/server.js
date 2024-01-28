@@ -27,7 +27,7 @@ const PORT = process.env.PORT || 8000;
 app.use(credentials);
 app.use(express.json());
 app.use(cors({
-    origin: "http://localhost:3000"
+    origin: "https://social-hub-pllv.onrender.com"
 }));
 app.use(cookieParser());
 app.use(helmet());
