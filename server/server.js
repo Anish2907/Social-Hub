@@ -28,6 +28,7 @@ app.use(credentials);
 app.use(express.json());
 app.use(cors({
     origin: "https://social-hub-pllv.onrender.com"
+    // origin: "http://localhost:3000"
 }));
 app.use(cookieParser());
 app.use(helmet());
