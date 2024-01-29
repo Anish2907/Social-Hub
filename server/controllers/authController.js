@@ -44,7 +44,7 @@ const loginController = async (req, res) => {
 
             await User.findOneAndUpdate({ email }, { refreshToken: RefreshToken });
 
-            res.cookie("refreshToken", RefreshToken, { httpOnly: true, maxAge: 24 * 60 * 60 * 1000, secure: true });
+            res.cookie("refreshToken", RefreshToken, { httpOnly: true, SameSite: none, maxAge: 24 * 60 * 60 * 1000, secure: true });
             return res.status(200).json({ other, accessToken });
 
         } else { return res.status(400).json({ message: "Invalid email or password" }); }
