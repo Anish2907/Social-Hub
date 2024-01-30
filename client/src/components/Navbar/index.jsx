@@ -6,7 +6,6 @@ import {
   GridViewOutlined,
   SearchOutlined,
   GroupOutlined,
-  NotificationsOutlined,
   MessageOutlined
 } from '@mui/icons-material/';
 
@@ -18,7 +17,7 @@ export default function Navbar() {
   return (
     <div className="navbar">
       <div className="left">
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/" style={{ textDecoration: "none", margin: "none", padding: "none" }}>
           <span>Social Hub</span>
         </Link>
         <HomeOutlined className="navIcon" />
@@ -31,7 +30,6 @@ export default function Navbar() {
       <div className="right">
         <GroupOutlined className="navIcon" />
         <MessageOutlined className="navIcon" />
-        <NotificationsOutlined className="navIcon" />
         <div className="user">
           <Link to={`/profile/${user?.other?._id}`}>
             <img src={user?.other?.profilePicture || "https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"} alt="user profile" />

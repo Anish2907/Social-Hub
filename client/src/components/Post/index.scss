@@ -59,12 +59,17 @@
         .interaction {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 2rem;
 
             .item {
                 display: flex;
                 align-items: center;
                 gap: 0.7rem;
+
+                @media (max-width:375px) {
+                    font-size: 0.9rem;
+                }
             }
         }
 

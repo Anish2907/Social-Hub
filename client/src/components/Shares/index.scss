@@ -1,5 +1,7 @@
 .shares {
     margin: 1rem 0;
+    background-color: rgb(237, 237, 244);
+    border-radius: 10px;
 
     @media (max-width:480px) {
         width: 100vw;
@@ -8,10 +10,10 @@
 
     .container {
         padding: 1.2rem;
-        -webkit-box-shadow: 0px 0px 56px -16px rgba(153, 151, 153, 1);
-        -moz-box-shadow: 0px 0px 56px -16px rgba(153, 151, 153, 1);
-        box-shadow: 0px 0px 56px -16px rgba(153, 151, 153, 1);
-        border-radius: 10px;
+        // -webkit-box-shadow: 0px 0px 56px -16px rgba(153, 151, 153, 1);
+        // -moz-box-shadow: 0px 0px 56px -16px rgba(153, 151, 153, 1);
+        // box-shadow: 0px 0px 56px -16px rgba(153, 151, 153, 1);
+        // border-radius: 10px;
         display: flex;
         flex-direction: column;
         gap: 1rem;
@@ -20,6 +22,10 @@
             display: flex;
             align-items: center;
             gap: 2rem;
+
+            @media (max-width:480px) {
+                gap: 0.2rem;
+            }
 
             img {
                 width: 40px;
@@ -34,6 +40,11 @@
                 width: 70%;
                 padding: 1rem;
                 font-size: large;
+                border-radius: 10px;
+
+                @media (max-width:375px) {
+                    font-size: 1rem;
+                }
             }
         }
 
@@ -66,11 +77,12 @@
                         gap: 0.3rem;
                     }
 
+
                     span {
                         font-size: large;
 
                         @media (max-width:480px) {
-                            font-size: small;
+                            font-size: medium;
                         }
                     }
                 }
@@ -92,6 +104,10 @@
                     border: none;
                     border-radius: 4px;
                     cursor: pointer;
+
+                    @media (max-width:375px) {
+                        font-size: 0.9rem;
+                    }
 
                     @media (max-width:480px) {
                         padding: 0.3rem;

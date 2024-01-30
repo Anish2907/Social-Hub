@@ -29,8 +29,22 @@
             gap: 3rem;
             color: white;
 
+            @media (max-width:375px) {
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+
+            @media (max-width:390px) {
+                padding: 2rem;
+                gap: 2rem;
+            }
+
             h1 {
                 font-size: 5rem;
+
+                @media (max-width:375px) {
+                    font-size: 4rem;
+                }
             }
 
             .toRegister {
@@ -63,6 +77,16 @@
             justify-content: center;
             gap: 3.3rem;
 
+            @media (max-width:375px) {
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+
+            @media (max-width:390px) {
+                padding: 2rem;
+                gap: 2rem;
+            }
+
             h1 {
                 color: #555;
             }
@@ -77,6 +101,10 @@
                     outline: none;
                     border: none;
                     border-bottom: 1px solid lightgray;
+
+                    @media (max-width:375px) {
+                        padding: 0.7rem;
+                    }
                 }
 
                 button {

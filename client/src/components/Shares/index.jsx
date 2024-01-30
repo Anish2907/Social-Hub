@@ -1,6 +1,5 @@
 import "./index.scss";
 import PermMediaIcon from '@mui/icons-material/PermMedia';
-import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import PlaceIcon from '@mui/icons-material/Place';
 import LabelIcon from '@mui/icons-material/Label';
 import useAuth from "../../hooks/useAuth";
@@ -13,6 +12,7 @@ export default function Shares() {
     const [file, setFile] = useState(null);
     const [desc, setDesc] = useState("");
     const [isPosting, setIsPosting] = useState(false);
+    const name = user.other.username.split(" ")[0];
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -54,7 +54,7 @@ export default function Shares() {
                     <img src={user?.other?.profilePicture || "https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"} alt="user profile" />
                     <input
                         type="text"
-                        placeholder="What's in your mind?"
+                        placeholder={`What's in your mind ${name}`}
                         value={desc}
                         onChange={(e) => { setDesc(e.target.value) }}
                     />
@@ -68,7 +68,7 @@ export default function Shares() {
                 <form onSubmit={handleSubmit} className="bottom">
                     <div className="left">
                         <label htmlFor="file" className="item">
-                            <PermMediaIcon htmlColor="orange" />
+                            <PermMediaIcon htmlColor="orange" className="shareIcons" />
                             <span>Photo</span>
                             <input
                                 style={{ display: "none" }}
@@ -78,16 +78,12 @@ export default function Shares() {
                             />
                         </label>
                         <div className="item">
-                            <LabelIcon htmlColor="blue" />
+                            <LabelIcon htmlColor="blue" className="shareIcons" />
                             <span>Tag</span>
                         </div>
                         <div className="item">
-                            <PlaceIcon htmlColor="green" />
+                            <PlaceIcon htmlColor="green" className="shareIcons" />
                             <span>Location</span>
-                        </div>
-                        <div className="item">
-                            <EmojiEmotionsIcon htmlColor="gold" />
-                            <span>Feelings</span>
                         </div>
                     </div>
                     <div className="right">

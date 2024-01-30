@@ -1,6 +1,7 @@
 .navbar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0.4rem 1rem;
     height: 3.2rem;
     border-bottom: 1px solid lightgray;
@@ -8,6 +9,8 @@
     position: sticky;
     top: 0;
     z-index: 1;
+
+    @media (max-width:375px) {}
 
     @media (max-width:480px) {
         padding: 0.4rem 0.8rem;
@@ -19,6 +22,10 @@
         justify-content: center;
         gap: 1.6rem;
 
+        @media (max-width:375px) {
+            gap: 0.4rem;
+        }
+
         @media (max-width:480px) {
             gap: 0.6rem;
         }
@@ -27,6 +34,12 @@
             font-weight: bold;
             font-size: 1.3rem;
             color: blue;
+            padding: 0;
+            margin: 0;
+
+            @media (max-width:375px) {
+                font-size: 0.1rem;
+            }
 
             @media (max-width:480px) {
                 font-size: 1rem;
@@ -78,6 +91,11 @@
                 border-radius: 50%;
                 object-fit: cover;
                 cursor: pointer;
+
+                @media (max-width:375px) {
+                    height: 1rem;
+                    width: 1rem;
+                }
 
                 @media (max-width:480px) {
                     height: 1.7rem;

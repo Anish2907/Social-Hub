@@ -200,7 +200,11 @@
             @media (max-width:480px) {
                 width: 80%;
                 left: 0.6rem;
-                height: 56%;
+                height: 60%;
+            }
+
+            @media (max-width:375px) {
+                height: 80%;
             }
 
             .container {
@@ -274,7 +278,7 @@
             bottom: 0;
             margin: auto;
             padding: 2rem;
-            background-color: rgb(215, 211, 211);
+            background-color: rgb(195, 193, 193);
             border-radius: 5px;
             width: 40%;
             height: 10%;
@@ -284,6 +288,10 @@
                 width: 70%;
                 left: 2rem;
                 top: 8rem;
+            }
+
+            @media (max-width:375px) {
+                height: 15%;
             }
 
             .container {
