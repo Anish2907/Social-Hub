@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { login } from "../../api/loginCall";
 import useAuth from "../../hooks/useAuth";
+import { Bounce, ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default function Login() {
@@ -21,9 +23,29 @@ export default function Login() {
         }
         const response = await login(loginInfo, dispatch);
         if (response.status === 400) {
-            alert("Invalid Email or Password.");
+            toast.error("Invalid Email or Password.", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
         } else if (response.status === 500) {
-            alert("Login falied. Please try again.");
+            toast.warn("Login falied. Please try again.", {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
         } else {
             window.localStorage.setItem("isLoggedIn", true);
             navigate("/");
@@ -50,18 +72,33 @@ export default function Login() {
                             placeholder="Email"
                             value={email}
                             onChange={(e) => { setEmail(e.target.value) }}
+                            required
                         />
                         <input
                             type="password"
                             placeholder="Password"
                             value={password}
                             onChange={(e) => { setPassword(e.target.value) }}
+                            required
                         />
                         <button type="submit">
                             Login
                         </button>
                     </form>
                 </div>
+                <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                    transition={Bounce}
+                />
             </div>
         </div>
     )
