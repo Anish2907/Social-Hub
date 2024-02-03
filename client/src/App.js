@@ -6,6 +6,7 @@ import Profile from "./pages/Profile";
 import { Routes, Route } from "react-router-dom";
 import RequireAuth from "./components/RequireAuth";
 import PersistLogin from "./components/PersistLogin";
+import Messenger from "./pages/Messenger/";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="profile/:id" element={<Profile />} />
           </Route>
+          <Route path="/messages" element={<Messenger />} />
         </Route>
       </Route>
 

@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
     },
     profilePicture: {
         type: String,
-        default: ""
+        default: "https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"
     },
     profilePicturePublicId: {
         type: String,
@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
     },
     coverPicture: {
         type: String,
-        default: ""
+        default: "https://venngage-wordpress.s3.amazonaws.com/uploads/2018/09/Colorful-Circle-Simple-Background-Image-1.jpg"
     },
     coverPicturePublicId: {
         type: String,
