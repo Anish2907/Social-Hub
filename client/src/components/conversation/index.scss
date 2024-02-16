@@ -20,9 +20,27 @@
             object-fit: cover;
         }
 
-        span {
+        span.noBold {
+            font-size: larger;
+        }
+
+        span.bold {
             font-size: larger;
             font-weight: bold;
+        }
+    }
+
+    .userStatus {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+
+        .onlineDot {
+            height: 12px;
+            width: 12px;
+            border-radius: 50%;
+            border: 1px solid white;
+            background-color: rgb(33, 235, 33);
         }
     }
 }

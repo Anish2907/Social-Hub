@@ -13,11 +13,12 @@ import { SessionExpired } from "../../context/AuthAction";
 import axios from "../../api/axios";
 import useAuth from "../../hooks/useAuth";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate";
+import socket from "../../socket/socketService";
 
 export default function Profile() {
 
   const { id } = useParams()
-  const { user, dispatch } = useAuth();
+  const { user, dispatch, countMessages, messages } = useAuth();
   const axiosPrivate = useAxiosPrivate();
   const [posts, setPosts] = useState([]);
   const [userInfo, setUserInfo] = useState({});
@@ -36,6 +37,17 @@ export default function Profile() {
   const [fb, setFb] = useState("");
   const [insta, setInsta] = useState("");
   const [twitter, setTwitter] = useState("");
+
+
+  useEffect(() => {
+    socket.emit("newUser", user.other._id);
+  }, [user]);
+
+  useEffect(() => {
+    socket.on("getMessage", ({ message, senderId }) => {
+      countMessages(messages + 1);
+    })
+  }, [countMessages, messages]);
 
   useEffect(() => {
 
@@ -70,11 +82,12 @@ export default function Profile() {
 
   const followUser = async () => {
     try {
+      setIsFollowing((prev) => !prev);
       await axios.put(`/api/user/${id}/follow`, { userId: user.other._id });
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      setIsFollowing((prev) => !prev);
     }
-    setIsFollowing((prev) => !prev);
   }
 
   const signOut = async () => {
@@ -87,7 +100,7 @@ export default function Profile() {
   }
 
   const updateUserInfo = async () => {
-    if (name === "" && city === "" && country === "" && fb === "" && insta === "" && twitter === "") return;
+    if (name.trim() === "" && city.trim() === "" && country.trim() === "" && fb.trim() === "" && insta.trim() === "" && twitter.trim() === "") return;
     const updateInfo = {};
     if (name !== "") { updateInfo.username = name };
     if (city !== "") { updateInfo.city = city };

@@ -1,8 +1,10 @@
 import { userModel as User } from "../models/User.js";
 import { postModel as Post } from "../models/Post.js";
+import { conversationModel as Conversation } from "../models/Conversation.js";
 import cloudinaryDelete from "../utils/cloudinaryDelete.js";
 import deletePost from "../utils/deletePost.js";
 import removeUser from "../utils/removeFollowersAndFollowings.js";
+import deleteChat from "../utils/deleteChats.js";
 
 //Get a user's info
 const getUser = async (req, res) => {
@@ -41,20 +43,34 @@ const deleteUser = async (req, res) => {
     if (req.userId === req.params.id || req.isAdmin) {
         try {
             const allUserPosts = await Post.find({ userId: req.userId });
+            const allConversation = await Conversation.find({ members: { $in: req.userId } });
 
+            //Delete all posts
             await Promise.all(
                 allUserPosts.map(post => {
                     return deletePost(post);
                 })
             );
 
+            //Delete all messages
+            await Promise.all(
+                allConversation.map(convId => {
+                    return deleteChat(convId);
+                })
+            );
+
+            //Remove user from all followers and followings
             await removeUser(req.userId);
+
+            //Delete profile picture and cove picture
             // if (currentUser.profilePicturePublicId) {
             //     await cloudinaryDelete(profilePicturePublicId);
             // }
             // if (currentUser.coverPicturePublicId) {
             //     await cloudinaryDelete(coverPicturePublicId);
             // }
+
+            //Delete user
             await User.findByIdAndDelete(req.params.id);
             return res.status(200).json("Account has been deleted.");
         } catch (error) {
@@ -126,8 +142,54 @@ const getAllUser = async (req, res) => {
         });
         return res.status(200).json(result);
     } catch (error) {
-        return res.status(500).json("Some error occured.")
+        return res.status(500).json("Some error occured.");
     }
 }
 
-export { getUser, updateUser, deleteUser, followUser, unfollowUser, getAllUser }
+//get all followers
+const getFollowers = async (req, res) => {
+    try {
+        const currentUser = await User.findById(req.params.id);
+        const followers = await Promise.all(
+            currentUser.followers.map(follower => {
+                return User.findById(follower);
+            })
+        );
+        const sendData = [];
+        followers.map(followerInfo => {
+            sendData.push({
+                _id: followerInfo._id,
+                username: followerInfo.username,
+                profilePicture: followerInfo.profilePicture
+            });
+        })
+        return res.status(200).json(sendData);
+    } catch (error) {
+        return res.status(500).json("Some error occured.");
+    }
+}
+
+//get all followings
+const getFollowings = async (req, res) => {
+    try {
+        const currentUser = await User.findById(req.params.id);
+        const followings = await Promise.all(
+            currentUser.followings.map(following => {
+                return User.findById(following);
+            })
+        );
+        const sendData = [];
+        followings.map(followingInfo => {
+            sendData.push({
+                _id: followingInfo._id,
+                username: followingInfo.username,
+                profilePicture: followingInfo.profilePicture
+            });
+        })
+        return res.status(200).json(sendData);
+    } catch (error) {
+        return res.status(500).json("Some error occured.");
+    }
+}
+
+export { getUser, updateUser, deleteUser, followUser, unfollowUser, getAllUser, getFollowers, getFollowings }

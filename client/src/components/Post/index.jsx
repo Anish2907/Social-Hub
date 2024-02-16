@@ -6,6 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import useAxiosPrivate from "../../hooks/useAxiosPrivate"
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import CommentOutlinedIcon from '@mui/icons-material/CommentOutlined';
 import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -40,12 +41,14 @@ export default function Post({ info, isProfile }) {
 
   const likePost = async () => {
     try {
+      setIsLiked(prev => !prev);
+      setLikes(isLiked ? likes - 1 : likes + 1);
       await axios.put(`/api/posts/${info._id}/like`, { userId: user.other._id });
     } catch (error) {
+      setIsLiked(prev => !prev);
+      setLikes(isLiked ? likes - 1 : likes + 1);
       console.log(error)
     }
-    setLikes(isLiked ? likes - 1 : likes + 1);
-    setIsLiked(prev => !prev);
   }
 
   const deletePost = async () => {
@@ -88,7 +91,8 @@ export default function Post({ info, isProfile }) {
         </div>
         <div className="interaction">
           <div className="item">
-            <FavoriteBorderIcon onClick={likePost} htmlColor={isLiked ? "red" : null} style={{ cursor: "pointer" }} />
+            {isLiked ? <FavoriteIcon onClick={likePost} htmlColor="red" style={{ cursor: "pointer" }} />
+              : <FavoriteBorderIcon onClick={likePost} style={{ cursor: "pointer" }} />}
             <span>{likes} Likes</span>
           </div>
           <div className="item">

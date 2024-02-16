@@ -10,7 +10,7 @@ import EmojiEmotionsOutlinedIcon from '@mui/icons-material/EmojiEmotionsOutlined
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
-import { io } from "socket.io-client";
+import socket from "../../socket/socketService";
 
 
 
@@ -23,31 +23,37 @@ export default function Messenger() {
     const [messages, setMessages] = useState([]);
     const [arrivedMessage, setArrivedMessage] = useState(null);
     const [chatUser, setChatUser] = useState({});
+    const [search, setSearch] = useState("");
+    const [searchConversation, setSearchConversation] = useState([]);
     const messageRef = useRef();
-    const { user } = useAuth();
-    const socket = useRef();
+    const { user, countMessages } = useAuth();
 
 
     useEffect(() => {
-        // socket.current = io("http://localhost:8000");
-        socket.current = io("https://social-hub-server-ebsq.onrender.com");
-        socket.current.on("getMessage", ({ message, senderId }) => {
+        socket.on("getMessage", ({ message, senderId }) => {
             setArrivedMessage({
                 senderId,
                 content: message,
                 createdAt: Date.now()
             });
         });
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        socket.on("getMessage", ({ message, senderId }) => {
+            countMessages(0);
+        });
+        countMessages(0);
+    }, [countMessages]);
 
     useEffect(() => {
         arrivedMessage &&
             currentChat?.members.includes(arrivedMessage.senderId) &&
             setMessages(prev => [...prev, arrivedMessage]);
-    }, [arrivedMessage, currentChat])
+    }, [arrivedMessage, currentChat]);
 
     useEffect(() => {
-        socket.current.emit("newUser", user.other._id);
+        socket.emit("newUser", user.other._id);
     }, [user]);
 
 
@@ -60,9 +66,30 @@ export default function Messenger() {
                 console.log(error);
             }
         }
+        const getALlFollowings = async () => {
+            try {
+                const response = await axios.get(`/api/user/followings/${user.other._id}`);
+                setSearchConversation(response.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
 
         getAllConversation();
-    }, [user.other._id]);
+        getALlFollowings();
+    }, [user]);
+
+    socket.on("getMessage", ({ message, senderId }) => {
+        const index = allConversation?.findIndex(conversation => conversation?.members?.includes(senderId));
+        if (index !== -1) {
+            // const conversationId = allConversation[index]._id;
+            const updatedConversations = [...allConversation];
+            const conversationToMove = updatedConversations.splice(index, 1)[0];
+            updatedConversations.unshift(conversationToMove);
+            setAllConversation(updatedConversations);
+        }
+
+    });
 
     useEffect(() => {
         const getAllMessages = async () => {
@@ -94,7 +121,7 @@ export default function Messenger() {
     }, [currentChat, user]);
 
     useEffect(() => {
-        messageRef.current?.scrollIntoView({ behavior: "smooth" });
+        messageRef.current?.scrollIntoView();
     }, [messages, messageRef]);
 
     const sendMessage = async () => {
@@ -106,7 +133,7 @@ export default function Messenger() {
         }
 
         const receiverId = currentChat.members.find(m => m !== user.other._id);
-        socket.current.emit("sendMessage", user.other._id, receiverId, inputValue);
+        socket.emit("sendMessage", user.other._id, receiverId, inputValue);
 
         try {
             const response = await axios.post("/api/message", message);
@@ -121,18 +148,52 @@ export default function Messenger() {
         setInputValue(prev => prev + e.native);
     }
 
+    const newConversation = async (userId) => {
+        const index = allConversation?.findIndex(conversation => conversation?.members?.includes(userId));
+        if (index !== -1) {
+            setCurrentChat(allConversation[index]);
+            setSearch("");
+        } else {
+            try {
+                const response = await axios.post(`/api/conversation`, {
+                    senderId: user.other._id,
+                    receiverId: userId
+                });
+                const updateConv = [...allConversation];
+                updateConv.unshift(response.data);
+                setAllConversation(updateConv);
+                setCurrentChat(response.data);
+                setSearch("");
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
+
     return (
         <div>
             <Navbar />
             <div className="messenger">
                 <div className="conversations">
                     <div className="conversationsWrapper">
-                        <input type="search" name="" placeholder="Search for a friend" className="conversationsInput" />
+                        <input type="search" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search for a friend" className="conversationsInput" />
                         {allConversation.map((conv) => (
                             <div key={conv._id} onClick={() => { setCurrentChat(conv) }}>
                                 <Conversation key={conv._id} data={conv} convId={currentChat?._id} />
                             </div>
                         ))}
+                        {search.trim() !== "" && (
+                            <div className="searchResults">
+                                {searchConversation.filter(
+                                    conversation => conversation.username.toLowerCase().includes(search)
+                                ).map(conv => (
+                                    <div className="userContainer" key={conv._id} onClick={() => newConversation(conv._id)}>
+                                        <img src={conv.profilePicture} alt="" />
+                                        <span className="UserName">{conv.username}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className="messages">

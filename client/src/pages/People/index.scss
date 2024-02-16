@@ -1,0 +1,86 @@
+.people {
+    display: flex;
+    height: calc(100vh - 6rem);
+
+    .peopleContainer {
+        flex: 8;
+        display: flex;
+
+        @media (max-width:480px) {
+            flex-direction: column;
+        }
+
+        .followersList,
+        .followingsList,
+        .suggestionsList {
+            flex: 1;
+            padding: 1rem;
+            border-right: 1px solid rgb(64, 64, 242);
+            height: 100%;
+            overflow-y: scroll;
+
+            @media (max-width:480px) {
+                overflow-y: visible;
+            }
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+            .tag {
+                display: block;
+                text-align: center;
+                margin-bottom: 2rem;
+                font-size: x-large;
+                background-color: rgb(228, 228, 246);
+                color: rgb(37, 37, 247);
+                padding: 1rem;
+                border-radius: 10px;
+            }
+        }
+
+        .followersList {
+
+            .followerContainer {
+                padding: 0.6rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 1rem;
+                border-radius: 10px;
+
+                &:hover {
+                    background-color: rgb(232, 232, 248);
+                }
+
+                .profileInfo {
+                    display: flex;
+                    align-items: center;
+                    gap: 2rem;
+
+                    img {
+                        height: 3.5rem;
+                        width: 3.5rem;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+
+                    .name {
+                        font-size: larger;
+                    }
+                }
+
+                button {
+                    border: none;
+                    outline: none;
+                    padding: 10px 15px;
+                    color: white;
+                    border-radius: 5px;
+                    background-color: #0A1D56;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

@@ -4,11 +4,22 @@ import Post from "../../components/Post";
 import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import axios from "../../api/axios";
+import socket from "../../socket/socketService";
 
 export default function Home() {
 
-  const { user } = useAuth();
+  const { user, countMessages, messages } = useAuth();
   const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    socket.emit("newUser", user.other._id);
+  }, [user]);
+
+  useEffect(() => {
+    socket.on("getMessage", ({ message, senderId }) => {
+      countMessages(messages + 1);
+    })
+  }, [countMessages, messages]);
 
   useEffect(() => {
     const getTimelinePosts = async () => {

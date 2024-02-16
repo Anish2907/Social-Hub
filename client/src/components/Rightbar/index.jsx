@@ -3,11 +3,14 @@ import { useState, useEffect } from "react";
 import axios from "../../api/axios";
 import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
+import socket from "../../socket/socketService";
 
 export default function Rightbar() {
 
   const { user } = useAuth();
   const [followUsers, setFollowUsers] = useState([]);
+  const [onlineFriends, setOnlineFriends] = useState([]);
+  const [followers, setFollowers] = useState([]);
 
   useEffect(() => {
     const getAllUser = async () => {
@@ -18,8 +21,25 @@ export default function Rightbar() {
         console.log(error);
       }
     }
+
+    const getAllFollowers = async () => {
+      try {
+        const response = await axios.get(`/api/user/followers/${user.other._id}`);
+        setFollowers(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
     getAllUser();
-  }, [user.other._id])
+    getAllFollowers();
+  }, [user])
+
+  useEffect(() => {
+    socket.on("onlineUsers", (onlineUsers) => {
+      setOnlineFriends(onlineUsers);
+    });
+  }, []);
 
   return (
     <div className="rightBar">
@@ -38,50 +58,15 @@ export default function Rightbar() {
             </div>
           ))}
         </div>
-        <div className="item activities">
-          <span>Latest Activities</span>
-          <div className="userInfo">
-            <img src="https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg" alt="user profile" />
-            <p>
-              <span>Jhon Doe</span> Changed their cover picture
-            </p>
-          </div>
-          <div className="userInfo">
-            <img src="https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg" alt="user profile" />
-            <p>
-              <span>Jhon Doe</span> Changed their cover picture
-            </p>
-          </div>
-          <div className="userInfo">
-            <img src="https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg" alt="user profile" />
-            <p>
-              <span>Jhon Doe</span> Changed their cover picture
-            </p>
-          </div>
-          <div className="userInfo">
-            <img src="https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg" alt="user profile" />
-            <p>
-              <span>Jhon Doe</span> Changed their cover picture
-            </p>
-          </div>
-        </div>
         <div className="item onlineList">
           <span>Online Friends</span>
-          <div className="userInfo">
-            <img src="https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg" alt="user profile" />
-            <div className="online" />
-            <span>Jhon Doe</span>
-          </div>
-          <div className="userInfo">
-            <img src="https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg" alt="user profile" />
-            <div className="online" />
-            <span>Jhon Doe</span>
-          </div>
-          <div className="userInfo">
-            <img src="https://images.ctfassets.net/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=1200&h=992&fl=progressive&q=70&fm=jpg" alt="user profile" />
-            <div className="online" />
-            <span>Jhon Doe</span>
-          </div>
+          {followers.map(follower => (
+            <div key={follower._id} className={onlineFriends.includes(follower._id) ? "userInfo" : "offline"}>
+              <img src={follower.profilePicture} alt="user profile" />
+              <div className="online" />
+              <span>{follower.username}</span>
+            </div>
+          ))}
         </div>
       </div>
     </div>

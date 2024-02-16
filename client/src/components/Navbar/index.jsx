@@ -13,7 +13,7 @@ import {
 
 export default function Navbar() {
 
-  const { user } = useAuth();
+  const { user, messages } = useAuth();
   const [scrolled, setScrolled] = useState(false);
 
 
@@ -55,7 +55,8 @@ export default function Navbar() {
           <GroupOutlined className="navIcon" />
         </NavLink>
         <NavLink to="/messages" activeClassName="active" style={{ color: "black" }}>
-          <MessageOutlined className="navIcon" />
+          <MessageOutlined className="navIcon messageIcon" />
+          {messages !== 0 && <span className="totalMsg">{messages}</span>}
         </NavLink>
         <div className="user">
           <NavLink to={`/profile/${user?.other?._id}`} activeClassName="active">

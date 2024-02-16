@@ -1,0 +1,57 @@
+.followingContainer {
+    padding: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+
+    &:hover {
+        background-color: rgb(232, 232, 248);
+    }
+
+    .profileInfo {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        img {
+            height: 3.5rem;
+            width: 3.5rem;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: larger;
+        }
+    }
+
+    .btns {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        .followBtn {
+            border: 1px solid #0A1D56;
+            outline: none;
+            padding: 8px;
+            color: #0A1D56;
+            border-radius: 5px;
+            background-color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .viewBtn {
+            border: none;
+            outline: none;
+            padding: 10px 15px;
+            color: white;
+            border-radius: 5px;
+            background-color: #0A1D56;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
+}

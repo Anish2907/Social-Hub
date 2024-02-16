@@ -63,6 +63,8 @@ io.on("connection", (socket) => {
     //add new User
     socket.on("newUser", userId => {
         connectedUsersMap.set(userId, socket.id);
+        const onlineUsers = [...connectedUsersMap.keys()];
+        io.emit("onlineUsers", onlineUsers);
     });
 
     //receive message
@@ -79,6 +81,8 @@ io.on("connection", (socket) => {
                 connectedUsersMap.delete(key);
             }
         })
+        const onlineUsers = [...connectedUsersMap.keys()];
+        io.emit("onlineUsers", onlineUsers);
     })
 });
 
