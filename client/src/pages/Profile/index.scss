@@ -33,9 +33,6 @@
         }
 
         .profilePicContainer {
-            width: 12rem;
-            height: 12rem;
-            object-fit: cover;
             position: absolute;
             left: 0;
             right: 0;
@@ -44,8 +41,6 @@
 
             @media (max-width:480px) {
                 top: 8rem;
-                width: 10rem;
-                height: 10rem;
             }
 
             .editIcon {
@@ -59,8 +54,16 @@
             }
 
             .profilePic {
+                width: 12rem;
+                height: 12rem;
+                object-fit: cover;
                 border-radius: 50%;
                 border: 3px solid white;
+
+                @media (max-width:480px) {
+                    width: 10rem;
+                    height: 10rem;
+                }
             }
         }
     }
