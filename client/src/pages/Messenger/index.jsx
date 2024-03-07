@@ -185,7 +185,7 @@ export default function Messenger() {
                         {search.trim() !== "" && (
                             <div className="searchResults">
                                 {searchConversation.filter(
-                                    conversation => conversation.username.toLowerCase().includes(search)
+                                    conversation => conversation.username.toLowerCase().includes(search.toLocaleLowerCase())
                                 ).map(conv => (
                                     <div className="userContainer" key={conv._id} onClick={() => newConversation(conv._id)}>
                                         <img src={conv.profilePicture} alt="" />
