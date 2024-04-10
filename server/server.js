@@ -29,7 +29,8 @@ const PORT = process.env.PORT || 8000;
 const server = http.createServer(app);
 const io = new SocketIOServer(server, {
     cors: {
-        origin: "https://social-hub-pllv.onrender.com"
+        origin: "https://social-hub2.netlify.app"
+        // origin: "https://social-hub-pllv.onrender.com"
         // origin: ["http://localhost:3000"]
     }
 });
@@ -38,7 +39,8 @@ const io = new SocketIOServer(server, {
 app.use(credentials);
 app.use(express.json());
 app.use(cors({
-    origin: "https://social-hub-pllv.onrender.com"
+    origin: "https://social-hub2.netlify.app"
+    // origin: "https://social-hub-pllv.onrender.com"
     // origin: ["http://localhost:3000"]
 }));
 app.use(cookieParser());
