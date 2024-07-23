@@ -30,7 +30,7 @@ const PORT = process.env.PORT || 8000;
 const server = http.createServer(app);
 const io = new SocketIOServer(server, {
     cors: {
-        origin: "*"
+        origin: allowedOrigins
         // origin: ["http://localhost:3000"]
     }
 });
@@ -39,7 +39,7 @@ const io = new SocketIOServer(server, {
 app.use(credentials);
 app.use(express.json());
 app.use(cors({
-    origin: "*",
+    origin: allowedOrigins,
     credentials: true,
     // origin: ["http://localhost:3000"]
 }

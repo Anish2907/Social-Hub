@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "Backend for Social_Hub",
   "main": "server.js",
+  "engines": {
+    "node": "18.x"
+  },
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "author": "Anish",
   "license": "ISC",
