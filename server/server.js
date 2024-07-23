@@ -38,14 +38,16 @@ const io = new SocketIOServer(server, {
 app.use(credentials);
 app.use(express.json());
 app.use(cors({
-    origin: "https://social-hub-pllv.onrender.com"
+    origin: "*"
     // origin: ["http://localhost:3000"]
 }));
 app.use(cookieParser());
 app.use(helmet());
 app.use(morgan("common"));
 
-
+app.get("/", (req, res) => {
+    return res.status(200).json({ message: "Server is up and running..." });
+});
 app.use("/api/auth", authRoute);
 app.use("/api/refresh", refreshRoute);
 app.use("/api/persistLogIn", persistLogInRoute);
