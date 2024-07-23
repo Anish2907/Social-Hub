@@ -18,6 +18,7 @@ import persistLogInRoute from "./routes/persistLogIn.js";
 import uploadRoute from "./routes/uploadOnCloudinary.js";
 import conversationRoute from "./routes/conversation.js";
 import messageRoute from "./routes/message.js";
+import { allowedOrigins } from "./config/allowedOrigins.js";
 
 
 dotenv.config();
@@ -38,9 +39,11 @@ const io = new SocketIOServer(server, {
 app.use(credentials);
 app.use(express.json());
 app.use(cors({
-    origin: "*"
+    origin: "*",
+    credentials: true,
     // origin: ["http://localhost:3000"]
-}));
+}
+));
 app.use(cookieParser());
 app.use(helmet());
 app.use(morgan("common"));
