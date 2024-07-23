@@ -29,7 +29,7 @@ const PORT = process.env.PORT || 8000;
 const server = http.createServer(app);
 const io = new SocketIOServer(server, {
     cors: {
-        origin: "https://social-hub-pllv.onrender.com"
+        origin: "*"
         // origin: ["http://localhost:3000"]
     }
 });
